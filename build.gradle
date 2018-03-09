@@ -15,9 +15,10 @@
 */
 
 plugins {
-  id "com.gradle.plugin-publish" version "0.9.4"
+  id "com.gradle.plugin-publish" version "0.9.10"
   id "groovy"
 }
+
 
 repositories {
   jcenter()
@@ -38,7 +39,7 @@ pluginBundle {
 
   plugins {
     jcasgenPlugin {
-      id = 'com.dictanova.jcasgen'
+      id = 'com.unsilo.jcasgen'
       displayName = 'Gradle UIMA JCasGen plugin'
     }
   }
