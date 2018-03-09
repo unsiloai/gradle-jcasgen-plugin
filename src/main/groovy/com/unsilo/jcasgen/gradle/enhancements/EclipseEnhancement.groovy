@@ -13,7 +13,7 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.dictanova.jcasgen.gradle.enhancements
+package com.unsilo.jcasgen.gradle.enhancements
 
 import org.gradle.api.Project
 import org.gradle.plugins.ide.eclipse.model.SourceFolder

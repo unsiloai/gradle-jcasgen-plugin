@@ -13,24 +13,20 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.dictanova.jcasgen.gradle
+package com.unsilo.jcasgen.gradle.enhancements
 
-import org.gradle.api.Project
-import org.gradle.testfixtures.ProjectBuilder
-import org.junit.Test
-
-import static org.junit.Assert.assertTrue
+import org.gradle.api.Project;
 
 /**
  * @author Damien Raude-Morvan
  */
-class JCasGenPluginTest {
+class GradlePluginEnhancement {
 
-    @Test
-    public void jcasgenPluginAddsGenerateTypeSystemToProject() {
-        Project project = ProjectBuilder.builder().build()
-        project.apply plugin: 'com.dictanova.jcasgen'
+    protected Project project
+    protected ant
 
-        assertTrue(project.tasks.generateTypeSystem instanceof JCasGenTask)
+    GradlePluginEnhancement(Project project) {
+        this.project = project
+        this.ant = project.ant
     }
 }

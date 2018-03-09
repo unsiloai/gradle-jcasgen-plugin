@@ -13,10 +13,10 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-package com.dictanova.jcasgen.gradle
+package com.unsilo.jcasgen.gradle
 
-import com.dictanova.jcasgen.gradle.enhancements.EclipseEnhancement
-import com.dictanova.jcasgen.gradle.enhancements.IDEAEnhancement
+import com.unsilo.jcasgen.gradle.enhancements.EclipseEnhancement
+import com.unsilo.jcasgen.gradle.enhancements.IDEAEnhancement
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.Task
@@ -53,7 +53,7 @@ class JCasGenPlugin implements Plugin<Project> {
         insertJCasGenSourceDirectorySetInto(sourceSet, project)
 
         // Wire task
-        Task jcasgenTask = createJCasGenTaskFor(sourceSet, project)
+            Task jcasgenTask = createJCasGenTaskFor(sourceSet, project)
 
         // Generate source code before java compile
         String compileJavaTaskName = sourceSet.getCompileTaskName("java");
