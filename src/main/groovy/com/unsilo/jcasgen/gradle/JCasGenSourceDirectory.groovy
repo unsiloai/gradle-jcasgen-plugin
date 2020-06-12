@@ -15,10 +15,12 @@
 */
 package com.unsilo.jcasgen.gradle
 
+import org.gradle.api.Project
 import org.gradle.api.file.SourceDirectorySet
-import org.gradle.api.internal.file.DefaultSourceDirectorySet
 import org.gradle.api.internal.file.FileResolver
-import org.gradle.api.internal.file.collections.DefaultDirectoryFileTreeFactory
+import org.gradle.api.model.ObjectFactory
+
+import javax.inject.Inject
 
 /**
  * A handler for a virtual directory mapping, injecting a virtual directory named 'jcasgen'
@@ -34,8 +36,9 @@ class JCasGenSourceDirectory {
      */
     def SourceDirectorySet jcasgen
 
-    JCasGenSourceDirectory(String parentDisplayName, FileResolver fileResolver) {
-        jcasgen = new DefaultSourceDirectorySet("${parentDisplayName} JCasGen source", fileResolver, new DefaultDirectoryFileTreeFactory())
+
+    JCasGenSourceDirectory(String parentDisplayName, ObjectFactory objectFactory) {
+        jcasgen = objectFactory.sourceDirectorySet("jcassource", "${parentDisplayName} JCasGen source".toString())
         jcasgen.filter.include("**/*_TS.xml")
     }
 

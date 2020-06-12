@@ -20,8 +20,11 @@ import com.unsilo.jcasgen.gradle.enhancements.IDEAEnhancement
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.Task
+import org.gradle.api.model.ObjectFactory
 import org.gradle.api.plugins.JavaPlugin
 import org.gradle.api.tasks.SourceSet
+
+import javax.inject.Inject
 
 /**
  * A plugin for adding JCasGen generation support to {@link JavaPlugin java projects}
@@ -30,6 +33,12 @@ import org.gradle.api.tasks.SourceSet
  */
 class JCasGenPlugin implements Plugin<Project> {
     private static final String GENERATE_GROUP = 'generate'
+    private ObjectFactory objectFactory
+
+    @Inject
+    JCasGenPlugin(ObjectFactory objectFactory) {
+        this.objectFactory = objectFactory
+    }
 
     void apply(Project project) {
         project.apply plugin: 'java'
@@ -64,7 +73,7 @@ class JCasGenPlugin implements Plugin<Project> {
     private insertJCasGenSourceDirectorySetInto(SourceSet sourceSet, Project project) {
         def typesystemDir = "src/${sourceSet.name}/typesystem"
 
-        sourceSet.convention.plugins.jcasgen = new JCasGenSourceDirectory(sourceSet.name, project.fileResolver)
+        sourceSet.convention.plugins.jcasgen = new JCasGenSourceDirectory(sourceSet.name, objectFactory)
         sourceSet.jcasgen { srcDir typesystemDir }
         sourceSet.resources { srcDir typesystemDir }
 
